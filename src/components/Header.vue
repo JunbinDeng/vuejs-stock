@@ -19,8 +19,8 @@
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
              aria-haspopup="true" aria-expanded="false">Save & Load</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Save Data</a>
-            <a class="dropdown-item" href="#">Load Data</a>
+            <a class="dropdown-item" href="#" @click="saveData">Save Data</a>
+            <a class="dropdown-item" href="#" @click="loadData">Load Data</a>
           </div>
         </div>
         <strong class="navbar-text navbar-right">Funds: {{funds | currency}}</strong>
@@ -44,6 +44,17 @@
       ]),
       endDay() {
         this.randomizeStocks();
+      },
+      saveData() {
+        const data = {
+          funds: this.$store.getters.funds,
+          stockPortfolio: this.$store.getters.stockPortfolio,
+          stocks: this.$store.getters.stocks
+        };
+        this.$http.put('data.json', data);
+      },
+      loadData() {
+
       }
     }
   }
